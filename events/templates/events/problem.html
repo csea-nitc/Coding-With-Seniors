@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block login_active %}active{% endblock %}
+{% block title %}{{ block.super }} | Problem{% endblock %}
+{% block css %}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet" id="bootstrap-css">
+{% endblock %}
+{% block body %}
+    <div class="ui segment">
+    <div class="ui container">
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col">
+            <h2> Name - {{ problem.name }}</h2>
+            <a href="{{ problem.url_problem }}">Problem Link</a>
+            {% if tags %}
+            <h4>Tags</h4>
+            {% endif %}
+            <h5>
+                {% for item in tags %}
+                    {{ item.type }},
+                {% endfor %}
+            </h5>
+            {% if problem.solution %}
+            <h4>Solution - {{ problem.solution }}</h4>
+            <a href="{{ problem.url_solution }}">Solution Link</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 10px">
+        <a href="/events/add_editorial/{{ problem.name }}"><button class="btn btn-default">Add YOUR Editorial</button></a>
+    </div>
+    <div class="row">
+        <h4>Editorials</h4>
+         <table class="table table-hover test">
+        <tr>
+            <th>Name of Editorial</th>
+            <th>Submitted By </th>
+            <th>Likes</th>
+            <th>Editorial</th>
+        </tr>
+        {% for item in editorialset  %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.user_submitted }}</td>
+            <td>{{ item.liked_users.count }}</td>
+            <td><a href="/events/editorials/{{ item.name }}">Take Me there</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block login_active %}active{% endblock %}
+{% block title %}{{ block.super }} | Session{% endblock %}
+{% block css %}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet" id="bootstrap-css">
+{% endblock %}
+{% block body %}
+    <div class="ui segment">
+    <div class="ui container">
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col">
+            <h2>Session - {{ session.name }}</h2>
+            <h3>{{ session.event.name }}</h3>
+            <h6>{{ session.date }}</h6>
+            <h4>Description: </h4>
+            <p>{{ session.description }}</p>
+            {% if session.test_name %}
+            <h4>Test Details</h4>
+            <p>{{ session.test_name }}</p>
+            <a href="{{ session.test_url }}">Test URL</a>
+            {% endif %}
+            {% if session.top_coder or session.top_contributor or session.top_improver %}
+            <h4>Best Performers</h4>
+            {%  endif %}
+            {% if session.top_coder %}
+                <h6>Top Coder: {{ session.top_coder }}</h6>
+            {% endif %}
+            {% if session.top_contributor %}
+                <h6>Top Contributor: {{ session.top_contributor }}</h6>
+            {% endif %}
+            {% if session.top_improver %}
+                <h6>Top Improver:  {{ session.top_improver }}</h6>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+         <table class="table table-hover test">
+        <tr>
+            <th>Material Name</th>
+            <th>Type</th>
+            <th>View Material</th>
+        </tr>
+        {% for item in material_set  %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+            <td><a href="{{item.url }}">Go to material</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="row">
+         <table class="table table-hover test">
+        <tr>
+            <th>Problem Name</th>
+            <th>URL</th>
+            <th>View Problem</th>
+        </tr>
+        {% for item in problem_set  %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td><a href="{{item.url_problem }}">Problem Link</a></td>
+            <td><a href="/events/problems/{{item.name }}">Take Me there</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="row">
+         <table class="table table-hover test">
+        <tr>
+            <th>#</th>
+            <th>Username</th>
+            <td>Display Name</td>
+            <th>View Profile</th>
+        </tr>
+        {% for item in ranks  %}
+        <tr>
+            <td>{{ item.rank }}</td>
+            <td>{{ item.user.username}}</td>
+            <td>{{ item.user.userprofile.display_name}}</td>
+            <td><a href="/members/{{item.user.userprofile.display_name }}">Take Me there</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    </div>
+    </div>
+{% endblock %}
