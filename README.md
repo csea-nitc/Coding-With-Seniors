@@ -3,8 +3,6 @@
 
 # Coding-With-Seniors
 
-  
-
 This website helps in organising and documenting the Coding With Seniors sessions conducted yearly by the Computer Science and Engineering Association, NIT Calicut.
 
 [Link to site](https://cws-nitc.herokuapp.com)
@@ -65,13 +63,7 @@ Clone the repository
   
 
 ```
-
-  
-
 git clone https://github.com/csea-nitc/Coding-With-Seniors.git
-
-  
-
 ```
 
   
@@ -87,13 +79,7 @@ Activate your environment in anaconda or choose to start a virtual environment o
   
 
 ```
-
-  
-
 conda activate {env_name}
-
-  
-
 ```
 
   
@@ -103,13 +89,7 @@ Install the requirements
   
 
 ```
-
-  
-
 pip install -r /path/to/requirements.txt
-
-  
-
 ```
 
   
@@ -117,33 +97,16 @@ pip install -r /path/to/requirements.txt
 Setup the database
 
 ```
-
-  
-
 python manage.py makemigrations
-
-  
-
 python manage.py migrate
-
-  
-
 python manage.py migrate --run-syncdb
-
 ```
 
 Create superuser and runserver
 
 ```
-
 python manage.py createsuperuser
-
-  
-
 python manage.py runserver
-
-  
-
 ```
 
   
@@ -211,29 +174,11 @@ Pushing any modified changes to the CWS site.
   
 
 ```
-
-  
-
 git remote add origin https://github.com/csea-nitc/Coding-With-Seniors.git
-
-  
-
 git remote add heroku https://git.heroku.com/cws-nitc.git
-
-  
-
 git pull origin master
-
-  
-
 git push heroku master
-
-  
-
 heroku open
-
-  
-
 ```
 
   
@@ -251,25 +196,10 @@ Setup the CSEA and heroku remote as in previous step and....
   
 
 ```
-
-  
-
 heroku run python manage.py makemigrations
-
-  
-
 heroku run python manage.py migrate
-
-  
-
 heroku run python manage.py migrate --run-syncdb
-
-  
-
 heroku open
-
-  
-
 ```
 
   
@@ -281,13 +211,7 @@ To reset the entire database
   
 
 ```
-
-  
-
 heroku pg:reset DATABASE
-
-  
-
 ```
 
   
